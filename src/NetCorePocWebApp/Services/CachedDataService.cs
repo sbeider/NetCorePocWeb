@@ -18,7 +18,7 @@ namespace NetCorePocWebApp.Services
             _dataRepository = dataRepository;
             _memoryCache = memoryCache;
         }
-        public List<string> GetData()
+        public DataInfo GetData()
         {
             const string key = "AllValues";
             List<string> data;
@@ -28,7 +28,7 @@ namespace NetCorePocWebApp.Services
                 data = _dataRepository.GetResponse();
                 _memoryCache.Set(key, data, DateTime.UtcNow.AddMinutes(1));
             }
-            return data;
+            return new DataInfo { Data = data, IsFromCache = found };
 
            
         }      

@@ -22,7 +22,7 @@ namespace NetCorePocWebApp.Controllers
        
 
         [HttpGet]
-        public List<string> Get()
+        public DataInfo Get()
         {
             return _service.GetData();
         }
