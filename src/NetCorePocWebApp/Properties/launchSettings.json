@@ -20,7 +20,7 @@
     "NetCorePocWebApp": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "api/CachedData",
+      "launchUrl": "api/paralleltasks",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
