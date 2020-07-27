@@ -27,10 +27,12 @@ namespace Tests
 
             Assert.IsNotNull(mockMemoryCache.Object.Get("AllValues"));
 
-            //mock repository is NOT set up, but the mock cache is set up, so if we get the data, we know that the cache was used
             var data = service.GetData();
-            Assert.AreEqual("testOne", data[0]);
-            Assert.AreEqual("testTwo", data[1]);
+            //mock repository is NOT set up, but the mock cache is set up, so if we get the data, we know that the cache was used
+            Assert.AreEqual("testOne", data.Data[0]);
+            Assert.AreEqual("testTwo", data.Data[1]);
+            Assert.IsTrue(data.IsFromCache);
+
         }
 
         [Test]
@@ -46,9 +48,10 @@ namespace Tests
 
             //mock repository is set up, but the mock cache is NOT set up, so if we get the data, we know that the cache was used
             var data = service.GetData();
-            Assert.AreEqual("testOne", data[0]);
-            Assert.AreEqual("testTwo", data[1]);
-            
+            Assert.AreEqual("testOne", data.Data[0]);
+            Assert.AreEqual("testTwo", data.Data[1]);
+            Assert.IsFalse(data.IsFromCache);
+
         }
 
         private Mock<IMemoryCache> CreateMockMemoryCache(object expectedValue)
